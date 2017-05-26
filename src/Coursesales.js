@@ -46,10 +46,15 @@ class Coursesales extends Component {
 		this.setState({AllCourses:CoursesArr});
 	}
 	
-	DeleteCourse(index){
+	DeleteCourse(index, neg){
+		console.log(neg);
+		if(neg)
+			this.setState({total:this.state.total-CoursesArr[index].price});
 		CoursesArr.splice(index,1);
 		console.log(CoursesArr);
+		
 		this.setState({AllCourses:CoursesArr});
+		
 	}
 
   render(){
@@ -69,7 +74,8 @@ class Coursesales extends Component {
 		<p id="total"> Total <b>{this.state.total}</b></p>
 		  
 		<input type="submit" className="btn btn-primary" value="Add Course" onClick={this.onClick} />
-                { this.state.showAddCourse ? <div id="results" className="search-results"><br/>
+            
+			{ this.state.showAddCourse ? <div id="results" className="search-results"><br/>
 							<div >
 						<input className="form-control" placeholder="Enter new course" id="CourseInput" onChange={event =>this.setState({courseVal: event.target.value})}  /><br/>
 						<input className="form-control" placeholder="Enter prize" id="PriceInput" onChange={event =>this.setState({priceVal:event.target.value})}  /><br/>
@@ -120,7 +126,8 @@ class Course extends Component {
   }
 	
 	DeleteCor(){
-		this.props.DeleteCourse(this.props.id);
+		this.props.DeleteCourse(this.props.id, this.state.active);
+		this.setState({active:''});
 	}
 
   render(){
