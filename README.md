@@ -8,6 +8,7 @@ Familiar with Git?
 - npm start
 
 Not Familiar with Git?
+
 	Download the code and unzip the file. Open in termilal and 
 	- npm install
 	- npm start
